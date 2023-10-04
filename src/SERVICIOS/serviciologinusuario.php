@@ -1,35 +1,28 @@
 <?php
-require_once("config.php");
+	require_once("config.php");
+	$username = $_POST["username"];
+    $password = $_POST["password"];
 
-// Validación básica de entrada
-if (!isset($_POST["username"]) || !isset($_POST["password"])) {
-    echo json_encode(["error" => "Datos de entrada incompletos"]);
-    exit;
-}
 
-$username = $_POST["username"];
-$password = $_POST["password"];
+    $rs = mysqli_query($cn, "select * from Usuario where username = '".$username."' and password = '".$password."'");
+    //$query =  "select * from Usuario where username = '".$username."' and password = '".$password."'";
+    //echo $query;
 
-// Uso de consultas preparadas para prevenir inyección SQL
-$stmt = $cn->prepare("SELECT username, passwordHash FROM Usuario WHERE username = ?");
-$stmt->bind_param("s", $username);
-
-if ($stmt->execute()) {
-    $stmt->bind_result($dbUsername, $dbPasswordHash);
-
-    if ($stmt->fetch()) {
-        if (password_verify($password, $dbPasswordHash)) {
-            echo json_encode(["message" => "Autenticación exitosa"]);
-        } else {
-            echo json_encode(["error" => "Contraseña incorrecta"]);
+    if($rs->num_rows == 1){
+        $row = $rs->fetch_assoc();
+        if(password_verify($password, $row["passwordHash"]))
+        {
+           // echo $row["passwordHash"];
+            
+            $res = $row;
+            echo json_encode($res,JSON_UNESCAPED_UNICODE);
         }
-    } else {
-        echo json_encode(["error" => "Usuario no encontrado"]);
+        else{
+            echo "-1";
+        }
     }
-} else {
-    echo json_encode(["error" => "Error en la consulta"]);
-}
-
-$stmt->close();
-$cn->close();
-?>
+    else{
+        echo "-2";
+    } 
+    //echo mysqli_insert_id($cn); 
+	mysqli_close($cn);
