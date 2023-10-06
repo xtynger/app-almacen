@@ -92,7 +92,6 @@ const ListadoUsuarios = () =>{
                     }
                 })
         }
-        
     } 
 
     return(
@@ -122,14 +121,13 @@ const ListadoUsuarios = () =>{
                             <td>{itemUsuario.nivelUsuario >= parseInt(window.usuario.nivelUsuario)?
                                     <NavLink to={"/usuario/editar/"+itemUsuario.idUsuario}><Button className="btn"><FontAwesomeIcon icon={faEdit} /></Button></NavLink>
                                     :<Button className="btn-secondary" disabled><FontAwesomeIcon icon={faLock}/></Button>
-                                    
                                 }
                             </td>
                             {/*pendiente por mejorar */}
-                            <td>{itemUsuario.estado == 1 && itemUsuario.nivelUsuario == window.usuario.nivelUsuario
+                            <td>{itemUsuario.idUsuario == window.usuario.idUsuario
                                     ? <Button className="btn-secondary" disabled><FontAwesomeIcon icon={faLock} /></Button>
                                     :<>
-                                        {itemUsuario.estado == 1 && itemUsuario.nivelUsuario != window.usuario.nivelUsuario
+                                        {itemUsuario.estado == 1
                                             ? <Button className="btn-success" onClick={() => {anularUsuarios(itemUsuario)}}  ><FontAwesomeIcon icon={faCheck} /></Button>
                                             : <Button className="btn-danger" onClick={() => {anularUsuarios(itemUsuario)}}><FontAwesomeIcon icon={faXmarkCircle} /></Button>
                                     } 
