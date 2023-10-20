@@ -7,6 +7,8 @@ import Login from '../views/auth/Login';
 //Privados
 import HomeIndex from '../views/home/HomeIndex';
 import InformeIndex from '../views/Informe/InformeIndex';
+import OrdenVentaIndex from '../views/ordenVenta/OrdenVentaIndex';
+import DetalleOrdenIndex from '../views/ordenVenta/DetalleOrdenIndex';
 import UsuarioIndex from '../views/usuario/UsuarioIndex';
 import VerUsuario from '../views/usuario/VerUsuario';
 import EditarUsuario from '../views/usuario/EditarUsuario';
@@ -26,7 +28,16 @@ const RouterView = () => {
 			{/*<Route path='/usuario' element={<PrivateOutlet />}>
 				<Route path='' element={<UsuarioIndex />} />
 			</Route>*/}
+			<Route path='/orden' element={<PrivateOutlet />}>
+				<Route path='' element={<OrdenVentaIndex />} />
+			</Route>
 
+
+			<Route path='/detalleorden/:id' element={<PrivateOutlet />}>
+				<Route path='' element={<DetalleOrdenIndex/>} />
+			</Route>
+
+			
 			<Route path='/usuario/:id' element={<PrivateOutlet />}>
 				<Route path='' element={<VerUsuario/>} />
 			</Route>

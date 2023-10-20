@@ -14,7 +14,7 @@ const Admin = () => (
                 <RouterView/>
             </div>     
         </BrowserRouter>    
-        <Footer/>   
+        {/*<Footer/>   */}
     </section>
 );
 
