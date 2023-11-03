@@ -452,7 +452,7 @@ const OrdenVenta = () => {
       <div className='m-3 p-3 text-center'>
         <Row className="justify-content-md-center">
           <Col xs={6}>
-            <InputGroup>
+          {/*}  <InputGroup>
               <FormControl
                   type='input'
                   name='textoBusqueda'
@@ -466,6 +466,8 @@ const OrdenVenta = () => {
                 Buscar &nbsp;&nbsp;<FontAwesomeIcon icon={faSearch} style={{ display: 'inline-block', marginRight: '5px' }}/>                
               </button>
             </InputGroup>
+
+  */}
           </Col>
         </Row>        
       </div>

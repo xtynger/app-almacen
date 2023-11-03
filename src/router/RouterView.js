@@ -9,6 +9,7 @@ import HomeIndex from '../views/home/HomeIndex';
 import InformeIndex from '../views/Informe/InformeIndex';
 import OrdenVentaIndex from '../views/ordenVenta/OrdenVentaIndex';
 import DetalleOrdenIndex from '../views/ordenVenta/DetalleOrdenIndex';
+import ArticuloIndex from '../views/ordenVenta/ArticuloIndex';
 import UsuarioIndex from '../views/usuario/UsuarioIndex';
 import VerUsuario from '../views/usuario/VerUsuario';
 import EditarUsuario from '../views/usuario/EditarUsuario';
@@ -59,6 +60,15 @@ const RouterView = () => {
 				) : null}
 			</Route>
 
+			{nivel??
+			(nivel!=2)?
+				<Route path='/detallearticulo/:id' element={<PrivateOutlet />}>
+					<Route path='' element={<ArticuloIndex/>} />
+				</Route>:<Route path='/' element={<PrivateOutlet />}>
+				<Route path='' element={<HomeIndex />} />
+				</Route>
+			}
+			
 					
 			{nivel??
 			(nivel!=3)?
